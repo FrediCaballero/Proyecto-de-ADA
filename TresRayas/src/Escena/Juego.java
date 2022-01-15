@@ -24,7 +24,7 @@ public class Juego extends javax.swing.JPanel {
         this.lbl_jugador1.setIcon(x);
         this.lbl_jugador2.setIcon(o);
         this.tab = new Tablero(nombre1, nombre2, jPanel1, lbl_puntosX, lbl_puntosO,lbl_resultados);
-       this. tab.setIsMaquina(maquina);
+        this. tab.setIsMaquina(maquina);
         this.jPanel2.setBackground(new Color(0, 0, 0, 100));
     }
 
