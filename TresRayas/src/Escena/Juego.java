@@ -1,6 +1,5 @@
 package Escena;
 
-import Escenario.Escenario;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;

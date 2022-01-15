@@ -2,7 +2,7 @@
 package Escenario;
 
 public class Escenario extends javax.swing.JFrame {
-
+    
     public Escenario() {
         initComponents();
     }
