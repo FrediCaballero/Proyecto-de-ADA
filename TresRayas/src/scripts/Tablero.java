@@ -219,9 +219,9 @@ public class Tablero implements ActionListener, KeyListener {
             });
         } else {
             if (jugador == humano) {
-                lbl_resultados.setText("GANASTES  " + jugador1);
+                lbl_resultados.setText("GANASTE  " + jugador1);
             } else {
-                lbl_resultados.setText("GANASTES  " + jugador2);
+                lbl_resultados.setText("GANASTE  " + jugador2);
             }
         }
     }

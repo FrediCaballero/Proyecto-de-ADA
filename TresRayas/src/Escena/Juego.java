@@ -19,8 +19,8 @@ public class Juego extends javax.swing.JPanel {
         initComponents();
         this.setSize(400, 550);
         this.fondo = img("fondo3.jpg");
-        this.x = escala(img("x.png"), 60, 60);
-        this.o = escala(img("o.png"), 50, 50);
+        this.x = escala(img("marca-x.png"), 60, 60);
+        this.o = escala(img("letra-o.png"), 50, 50);
         this.lbl_jugador1.setIcon(x);
         this.lbl_jugador2.setIcon(o);
         this.tab = new Tablero(nombre1, nombre2, jPanel1, lbl_puntosX, lbl_puntosO,lbl_resultados);
