@@ -24,12 +24,12 @@ public class Menu extends javax.swing.JPanel {
         this.frm = frm;
         this.setSize(400, 600);
         this.fondo = img("fondo3.jpg");
-        this.humano = escala(img("persona.png"), 80, 70);
+        this.humano = escala(img("Persona 1.png"), 80, 70);
         this.lbl_modalidad.setBackground(new Color(0, 0, 0, 100));
-        this.robot = escala(img("robot.png"), 70, 60);
-        this.robot = escala(img("robot.png"), 70, 60);
-        this.x = escala(img("x.png"), 60, 60);
-        this.o = escala(img("o.png"), 50, 50);
+        this.robot = escala(img("ai.png"), 70, 60);
+        this.robot = escala(img("ai.png"), 70, 60);
+        this.x = escala(img("marca-x.png"), 60, 60);
+        this.o = escala(img("letra-o.png"), 50, 50);
         this.lbl_ficha1.setIcon(x);
         this.lbl_ficha2.setIcon(o);
         this.lbl_jugador1.setIcon(humano);

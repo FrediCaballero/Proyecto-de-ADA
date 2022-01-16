@@ -105,8 +105,8 @@ public class Tablero implements ActionListener, KeyListener {
                 esenario.add(btn[i][j]);
             }
         }
-        x = escala(img("x.png"), btn[0][0].getWidth(), btn[0][0].getHeight());
-        o = escala(img("o.png"), btn[0][0].getWidth(), btn[0][0].getHeight());
+        x = escala(img("marca-x.png"),btn[0][0].getWidth(), btn[0][0].getHeight()); //para que abarque la casilla automáticamente 
+        o = escala(img("letra-o.png"), 80, 80); 
     }
 
     @Override
