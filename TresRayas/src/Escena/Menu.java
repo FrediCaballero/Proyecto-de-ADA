@@ -211,7 +211,7 @@ public class Menu extends javax.swing.JPanel {
                 }
             });
         } else {
-            JOptionPane.showMessageDialog(this, "INGRESE NOMBRE");
+            JOptionPane.showMessageDialog(this, " INGRESE EL NOMBRE DEL PARTICIPANTE ");
         }
     }//GEN-LAST:event_lbl_textoPlayMouseClicked
 

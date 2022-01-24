@@ -58,10 +58,10 @@ public class Tablero implements ActionListener, KeyListener {
         this.creaTablero();
     }
 
+    //CONSTRUCTORES GETTERS Y SETTERS
     public void setIsMaquina(boolean isMaquina) {
         this.isMaquina = isMaquina;
     }
-
     public String getJugador1() {
         return jugador1;
     }
@@ -78,10 +78,12 @@ public class Tablero implements ActionListener, KeyListener {
         return empate;
     }
 
+    //FUNCIÓN DE CREACIÓN DEL TABLERO
     private void creaTablero() {
         esenario.setLayout(new GridLayout(3, 3));
         for (int i = 0; i < btn.length; i++) {
             for (int j = 0; j < btn[0].length; j++) {
+                //caracteristicas y tamaño de ventana
                 btn[i][j] = new JButton();
                 btn[i][j].setPreferredSize(new Dimension(100, 100));
                 btn[i][j].setSize(100, 100);
@@ -89,6 +91,7 @@ public class Tablero implements ActionListener, KeyListener {
                 btn[i][j].setContentAreaFilled(false);
                 btn[i][j].addActionListener(this);
                 btn[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                //Dibujando los recuadros del tablero de juego
                 if (i == 0 || i == 1) {
                     btn[i][j].setBorder(javax.swing.BorderFactory.createMatteBorder(0, 8, 8, 0, new java.awt.Color(255, 102, 255)));
                 }
@@ -101,15 +104,98 @@ public class Tablero implements ActionListener, KeyListener {
                         btn[i][j].setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(255, 102, 255)));
                     }
                 }
-
-                esenario.add(btn[i][j]);
+                esenario.add(btn[i][j]); //Agregando tablero al escenario de juego 
             }
         }
+        //estableciendo imágenes de X y O al tablero
         x = escala(img("marca-x.png"),btn[0][0].getWidth(), btn[0][0].getHeight()); //para que abarque la casilla automáticamente 
         o = escala(img("letra-o.png"), 80, 80); 
     }
+ 
+        //CONFIGURACIONES DE IMÁGEN
+    private ImageIcon escala(ImageIcon img, int ancho, int alto) {
+        return new ImageIcon(img.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+    }
 
-    @Override
+    private ImageIcon img(String nombre) {
+        return new ImageIcon(getClass().getResource("/Imagen/" + nombre));
+    }
+
+    //POSICIONES DE LA TABLA
+    private boolean fila(int f, int col1, int col2, int col3, int jugador) {  
+        return (p[f][col1] == jugador && p[f][col2] == jugador && p[f][col3] == jugador);
+    }
+
+    private boolean columna(int c, int fil1, int fil2, int fil3, int jugador) {
+        return (p[fil1][c] == jugador && p[fil2][c] == jugador && p[fil3][c] == jugador);
+    }
+
+    private boolean diagonal(int col1, int col2, int col3, int jugador) {
+        return p[0][col1] == jugador && p[1][col2] == jugador && p[2][col3] == jugador;
+    }
+
+    private boolean filas(int jugador) {
+        return fila(0, 0, 1, 2, jugador) || fila(1, 0, 1, 2, jugador) || fila(2, 0, 1, 2, jugador);
+    }
+
+    private boolean columnas(int jugador) {
+        return columna(0, 0, 1, 2, jugador) || columna(1, 0, 1, 2, jugador) || columna(2, 0, 1, 2, jugador);
+    }
+
+    //CLASES PRIMARIAS
+    private boolean isVictorias(int jugador) {
+        return filas(jugador) || columnas(jugador) || diagonal(0, 1, 2, jugador) || diagonal(2, 1, 0, jugador);
+    }
+
+    private void jugada(int i, int j, ImageIcon img, int valor) {
+  
+            if (!fin) {
+                p[i][j] = valor;
+                btn[i][j].setIcon(img); //establece la imágen dentro del tablero dependiendo de lo seleccione cada jugador 
+                if (isVictorias(valor)) {
+                    fin = true;
+                }
+            }
+    }
+    
+    private void marcador(ImageIcon img, int puntos, int jugador) {
+        if (mensaje) {
+            Escenario frm = new Escenario(); //creando el escenario 
+            Mensaje msg = new Mensaje(img, puntos); //creando la interfaz de mensaje
+            frm.setSize(410, 250); //tamaño del JFrame
+            frm.add(msg);
+            frm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); //EVITA QUE SE CIERRE LA VENTANA ANTERIOR
+            frm.setResizable(false);
+            frm.setLocationRelativeTo(null);
+            frm.setVisible(true);
+            frm.addWindowListener(new java.awt.event.WindowAdapter() {
+                public void windowClosing(java.awt.event.WindowEvent evt) {
+                    reiniciar(); //PARA REINICIAR EL JUEGO
+                }
+            });
+        } else { //EN CASO DE SELECCIÓN "NO VOLVER A MOSTRAR"
+            if (jugador == humano) {
+                lbl_resultados.setText("GANASTE  " + jugador1);
+            } else {
+                lbl_resultados.setText("GANASTE  " + jugador2);
+            }
+        }
+    }
+
+    //FUNCIONES PARA EL REINICIO DE LA PARTIDA
+    public void reiniciar() {
+        lbl_resultados.setText("");
+        turno = 0;
+        fin = false;
+        for (int i = 0; i < btn.length; i++) {
+            for (int j = 0; j < btn[0].length; j++) {
+                btn[i][j].setIcon(null);
+                p[i][j] = 0;
+            }
+        }
+    }
+    
+    //FUNCION DE ACCIÓN DEL TABLERO
     public void actionPerformed(ActionEvent ae) {
         if (!fin) {
             for (int i = 0; i < btn.length; i++) {
@@ -157,103 +243,16 @@ public class Tablero implements ActionListener, KeyListener {
         }
     }
 
-    private ImageIcon escala(ImageIcon img, int ancho, int alto) {
-        return new ImageIcon(img.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
-    }
-
-    private ImageIcon img(String nombre) {
-        return new ImageIcon(getClass().getResource("/Imagen/" + nombre));
-    }
-
-    private boolean fila(int f, int col1, int col2, int col3, int jugador) {
-        return (p[f][col1] == jugador && p[f][col2] == jugador && p[f][col3] == jugador);
-    }
-
-    private boolean columna(int c, int fil1, int fil2, int fil3, int jugador) {
-        return (p[fil1][c] == jugador && p[fil2][c] == jugador && p[fil3][c] == jugador);
-    }
-
-    private boolean diagonal(int col1, int col2, int col3, int jugador) {
-        return p[0][col1] == jugador && p[1][col2] == jugador && p[2][col3] == jugador;
-    }
-
-    private boolean filas(int jugador) {
-        return fila(0, 0, 1, 2, jugador) || fila(1, 0, 1, 2, jugador) || fila(2, 0, 1, 2, jugador);
-    }
-
-    private boolean columnas(int jugador) {
-        return columna(0, 0, 1, 2, jugador) || columna(1, 0, 1, 2, jugador) || columna(2, 0, 1, 2, jugador);
-    }
-
-    private boolean isVictorias(int jugador) {
-        return filas(jugador) || columnas(jugador) || diagonal(0, 1, 2, jugador) || diagonal(2, 1, 0, jugador);
-    }
-
-    private void jugada(int i, int j, ImageIcon img, int valor) {
-  
-            if (!fin) {
-                p[i][j] = valor;
-                btn[i][j].setIcon(img);
-                if (isVictorias(valor)) {
-                    fin = true;
-                }
-            }
-     
-    }
-
-    private void marcador(ImageIcon img, int puntos, int jugador) {
-        if (mensaje) {
-            Escenario frm = new Escenario();
-            Mensaje msg = new Mensaje(img, puntos);
-            frm.setSize(410, 250);
-            frm.add(msg);
-            frm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            frm.setResizable(false);
-            frm.setLocationRelativeTo(null);
-            frm.setVisible(true);
-            frm.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosing(java.awt.event.WindowEvent evt) {
-                    reiniciar();
-                }
-            });
-        } else {
-            if (jugador == humano) {
-                lbl_resultados.setText("GANASTE  " + jugador1);
-            } else {
-                lbl_resultados.setText("GANASTE  " + jugador2);
-            }
-        }
-    }
-
-    public void reiniciar() {
-        lbl_resultados.setText("");
-        turno = 0;
-        fin = false;
-        for (int i = 0; i < btn.length; i++) {
-            for (int j = 0; j < btn[0].length; j++) {
-                btn[i][j].setIcon(null);
-                p[i][j] = 0;
-            }
-        }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent ke) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent ke) {
-        if (ke.getKeyCode() == 82) {
+    //FUNCIONES KEYEVENT PARA FUNCION DE REINICIO
+    //Funciones no requeridas
+     public void keyTyped(KeyEvent ke) {}
+     public void keyReleased(KeyEvent ke) {}
+    //Funcion de accion reiniciar 
+      public void keyPressed(KeyEvent ke) {
+        if (ke.getKeyCode() == 82) { //Permite reiniciar el juego cuando se selecciona la opcion
             reiniciar();
         }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent ke) {
-
-    }
+    }    
 
     // ALGORITMO MINIMAX
     private void movMAQUINA() {
