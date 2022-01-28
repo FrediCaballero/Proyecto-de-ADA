@@ -8,10 +8,10 @@ Rojas Rojas, Mauro Alexander (18200318)
 ======================================TRES EN RAYA========================================= 
  Clase principal (Main) 
 */
-package scripts;
+package Principal;
 
 import Escena.Menu;
-import Escenario.Escenario;
+import Escena.Escenario;
 
 public class Main {
 

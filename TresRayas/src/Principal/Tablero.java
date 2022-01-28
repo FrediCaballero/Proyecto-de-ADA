@@ -8,9 +8,9 @@ Rojas Rojas, Mauro Alexander (18200318)
 ======================================TRES EN RAYA========================================= 
  Esta clase contiene los principales algoritmos utilizados 
 */
-package scripts;
+package Principal;
 import Escena.Mensaje;
-import Escenario.Escenario;
+import Escena.Escenario;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;

@@ -12,7 +12,7 @@ package Escena;
 
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
-import scripts.Tablero;
+import Principal.Tablero;
 
 public class Mensaje extends javax.swing.JPanel {
 

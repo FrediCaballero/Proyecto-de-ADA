@@ -10,7 +10,6 @@ Interfaz inicial del juego , el main invoca primero esta clase para poder comenz
 */
 package Escena;
 
-import Escenario.Escenario;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;

@@ -9,7 +9,7 @@ Rojas Rojas, Mauro Alexander (18200318)
 Escenario , se usa como base para crear las interfaces de cada funcionalidad , en general del juego  
 se invoca como clase para su creacion 
 */
-package Escenario;
+package Escena;
 
 public class Escenario extends javax.swing.JFrame {
     
