@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    EQUIPO 2: 
+Arango Quispe, Esmeralda (19200300)
+Caballero Leon, Fredi Alexander (18200076)
+Magallanes Quiroz, Claudia Carolina (18200331)
+Rivas Rodriguez, Catherine Lesly (18200289)
+Rojas Rojas, Mauro Alexander (18200318)
+======================================TRES EN RAYA========================================= 
+Interfaz donde se muestra el mensaje de quien es el ganador  
+*/
 package Escena;
 
 import java.awt.Graphics;
@@ -93,14 +98,14 @@ public class Mensaje extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-      Tablero.mensaje = !jCheckBox1.isSelected();
+      Tablero.mensaje = !jCheckBox1.isSelected(); //cuando seleccion es no volver a mostrar
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    @Override
+  
     public void paint(Graphics grphcs) {
         grphcs.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
         setOpaque(false);
-        super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
+        super.paint(grphcs); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

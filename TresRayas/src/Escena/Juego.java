@@ -1,3 +1,13 @@
+/*
+    EQUIPO 2: 
+Arango Quispe, Esmeralda (19200300)
+Caballero Leon, Fredi Alexander (18200076)
+Magallanes Quiroz, Claudia Carolina (18200331)
+Rivas Rodriguez, Catherine Lesly (18200289)
+Rojas Rojas, Mauro Alexander (18200318)
+======================================TRES EN RAYA========================================= 
+Interfaz donde se encuentra el juago ( con el tablero cásico del tres en raya) 
+*/
 package Escena;
 
 import java.awt.Color;
@@ -174,7 +184,7 @@ public class Juego extends javax.swing.JPanel {
     public void paint(Graphics grphcs) {
         grphcs.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), null);
         setOpaque(false);
-        super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
+        super.paint(grphcs); 
     }
 
     private ImageIcon escala(ImageIcon img, int ancho, int alto) {

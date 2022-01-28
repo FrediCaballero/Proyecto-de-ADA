@@ -1,3 +1,13 @@
+/*
+    EQUIPO 2: 
+Arango Quispe, Esmeralda (19200300)
+Caballero Leon, Fredi Alexander (18200076)
+Magallanes Quiroz, Claudia Carolina (18200331)
+Rivas Rodriguez, Catherine Lesly (18200289)
+Rojas Rojas, Mauro Alexander (18200318)
+======================================TRES EN RAYA========================================= 
+ Esta clase contiene los principales algoritmos utilizados 
+*/
 package scripts;
 import Escena.Mensaje;
 import Escenario.Escenario;
